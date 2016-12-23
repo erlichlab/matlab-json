@@ -1,6 +1,6 @@
 #ifdef JSON_C_DIR_PREFIXED
-    #include <json-c/json.h>
-    #include <json-c/json_object_private.h>
+    #include "json-c/json.h"
+    #include "json-c/json_object_private.h"
 #else
     #include <json.h>
     #include <json_object_private.h>
@@ -60,9 +60,10 @@ void value(json_object *jo, mxArray ** mxa){
             ma = mxCreateLogicalScalar(json_object_get_boolean(jo));
             break;
         case json_type_int: 
-            ma = mxCreateNumericMatrix(1, 1, mxINT64_CLASS, mxREAL);
-            *((int64_t *)mxGetData(ma)) = json_object_get_int64(jo);
-            break;    
+//            ma = mxCreateNumericMatrix(1, 1, mxINT64_CLASS, mxREAL);
+//            *((int64_t *)mxGetData(ma)) = json_object_get_int64(jo);
+//            break;    
+// treat ints as doubles
         case json_type_double: 
             ma = mxCreateDoubleScalar(json_object_get_double(jo));
             break;
